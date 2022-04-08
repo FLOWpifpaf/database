@@ -67,7 +67,7 @@ SELECT
     `medicine`.`name`
 FROM
 	`order`
-		LEFT JOIN
+		RIGHT JOIN
 	`production` ON `order`.`id_production` = `production`.`id_production`
 		LEFT JOIN
 	`company` ON `production`.`id_company` = `company`.`id_company`
