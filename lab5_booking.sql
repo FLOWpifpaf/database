@@ -158,7 +158,9 @@ FROM
 	`room_in_booking` AS `secondary` ON `primary`.`id_room_in_booking` != `secondary`.`id_room_in_booking`
 		AND `primary`.`id_room` = `secondary`.`id_room`
     WHERE
-		`primary`.`checkin_date` BETWEEN `secondary`.`checkin_date` AND DATE_ADD(`secondary`.`checkout_date`, INTERVAL -1 DAY);
+		`primary`.`checkin_date` BETWEEN `secondary`.`checkin_date` AND DATE_ADD(`secondary`.`checkout_date`, INTERVAL -1 DAY)
+			OR
+		`secondary`.`checkin_date` BETWEEN `primary`.`checkin_date` AND DATE_ADD(`primary`.`checkout_date`, INTERVAL -1 DAY);
 
 -- 8. Создать бронирование в транзакции
 BEGIN;

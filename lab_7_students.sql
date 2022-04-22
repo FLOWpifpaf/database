@@ -49,11 +49,11 @@ SELECT
     `mark`.`mark`
 FROM
 	`student`
-		LEFT JOIN
+		JOIN
 	`mark` ON `student`.`id_student` = `mark`.`id_student`
-		LEFT JOIN
+		JOIN
 	`lesson` ON `lesson`.`id_lesson` = `mark`.`id_lesson`
-		LEFT JOIN
+		JOIN
 	`subject` ON `lesson`.`id_subject` = `subject`.`id_subject`
 WHERE
 	`subject`.`name` = 'Информатика';
@@ -80,7 +80,7 @@ CREATE PROCEDURE get_student_debtor(`searchable_id_group` INT)
 			LEFT JOIN
 		`mark` ON `student`.`id_student` = `mark`.`id_student` AND `lesson`.`id_lesson` = `mark`.`id_lesson`
 	WHERE
-        `group`.`id_group` = 2
+        `group`.`id_group` = `searchable_id_group`
         AND `mark`.`id_mark` IS NULL;
 
 CALL get_student_debtor(2);
